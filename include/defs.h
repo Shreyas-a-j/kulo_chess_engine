@@ -10,6 +10,8 @@ typedef unsigned long long U64;
 #define name "kulo 1.0"
 #define board_square_number 120
 
+#define MAXGAMEMOVES 2048
+
 enum { EMPTY, P, N, B, R, Q, K, p, n, b, r, q, k};
 
 enum { FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H, FILE_NONE };
@@ -31,6 +33,18 @@ enum
 
 enum { FALSE, TRUE};
 
+enum { KCA = 1, QCA = 2, kCA = 4, qCA = 8 };
+
+typedef struct
+{
+    int move;
+    int castlePerm;
+    int enPass;
+    int fiftyMovie;
+    U64 posKey;
+
+} s_undo;
+
 typedef struct
 {
     int pieces[board_square_number];
@@ -45,12 +59,16 @@ typedef struct
     int ply;
     int hisPly; // history of ply
 
+    int castlePerm;
+
     U64 posKey;
 
     int pceNum[13];
     int BigPce[3];
     int majPce[3];
     int minPce[3];
+
+    s_undo history[MAXGAMEMOVES];
 
 } s_board;
 
