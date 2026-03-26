@@ -29,6 +29,29 @@ enum
     A8 = 91, B8, C8, D8, E8, F8, G8, H8, NO_SQ
 };
 
-enum { FLASE, TRUE};
+enum { FALSE, TRUE};
+
+typedef struct
+{
+    int pieces[board_square_number];
+    U64 pawns[3];
+
+    int KingSq[2];
+
+    int side;
+    int enPass; //enpassont
+    int fiftyMovie;
+
+    int ply;
+    int hisPly; // history of ply
+
+    U64 posKey;
+
+    int pceNum[13];
+    int BigPce[3];
+    int majPce[3];
+    int minPce[3];
+
+} s_board;
 
 #endif //PROJECT_001_DEFS_H
